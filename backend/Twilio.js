@@ -6,7 +6,7 @@ class Twilio {
   tokenSid = "SK451aedd0a623fa29eb88d4eace365dbe";
   tokenSecret = "jjbrtJb0r1uN5uLlfVnUZGCNRfk8hg9X";
   phoneNumberSid = "PN13aa706599f48b2d139fe1cd3f597283";
-  verufy = "VAa52aeff18a37af5eed5bedaddef766a2";
+  verify = "VAa52aeff18a37af5eed5bedaddef766a2";
   client;
   constructor() {
     this.client = twilio(this.accountSid, this.tokenSecret, {
@@ -15,6 +15,15 @@ class Twilio {
   }
   getTwilio() {
     this.client;
+  }
+
+  async sendVerifyAsync(to, channel) {
+    this.client.verify.secrvices(this.verify).verifications.create({
+      to,
+      channel,
+    });
+    console.log("sendVerify: ", data);
+    return data;
   }
 }
 

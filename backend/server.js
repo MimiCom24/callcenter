@@ -1,5 +1,5 @@
 const express = require("express");
-const twilo = require("./twilio");
+const twilo = require("./Twilio");
 const app = express();
 const PORT = 8000;
 
@@ -9,7 +9,11 @@ app.get("/", (req, res) => {
 });
 
 // receive phone number
-app.get("/login", (req, res) => {});
+app.get("/login", (req, res) => {
+  console.log("Login Page");
+  const data = await client.sendVerifyAsync(process.env.MOBILE, "SMS")
+  res.send(data)
+});
 
 // verify phone number
 app.get("/verify", (res, req) => {});
