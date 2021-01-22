@@ -1,22 +1,25 @@
 const express = require("express");
-const twilo = require("./Twilio");
+const twilio = require("./Twilio");
 const app = express();
 const PORT = 8000;
 
-const client = twilo.client;
 app.get("/", (req, res) => {
   res.send("Slavo3 Call Center");
 });
 
 // receive phone number
-app.get("/login", (req, res) => {
+app.get("/login", async (req, res) => {
+  const data = await twilio.sendVerifyAsync(process.env.MOBILE, "sms");
+  res.send(data);
   console.log("Login Page");
-  const data = await client.sendVerifyAsync(process.env.MOBILE, "SMS")
-  res.send(data)
 });
 
 // verify phone number
-app.get("/verify", (res, req) => {});
+app.get("/verify", async (res, req) => {
+  console.log("Verify");
+  const data = await twilio.verifyCodeAsync(process.env.MOBILE, "974620");
+  return data;
+});
 app.listen(PORT, () => {
   console.log("Server is Running on ", PORT);
 });

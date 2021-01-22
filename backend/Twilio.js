@@ -1,7 +1,7 @@
 const twilio = require("twilio");
 
 class Twilio {
-  phoneNumber = "+14073895124";
+  phoneNumber = "+1 407 389 5124";
   accountSid = "AC6708076db8d42e1e6da0f42fb377aa69";
   tokenSid = "SK451aedd0a623fa29eb88d4eace365dbe";
   tokenSecret = "jjbrtJb0r1uN5uLlfVnUZGCNRfk8hg9X";
@@ -9,7 +9,7 @@ class Twilio {
   verify = "VAa52aeff18a37af5eed5bedaddef766a2";
   client;
   constructor() {
-    this.client = twilio(this.accountSid, this.tokenSecret, {
+    this.client = twilio(this.tokenSid, this.tokenSecret, {
       accountSid: this.accountSid,
     });
   }
@@ -18,11 +18,24 @@ class Twilio {
   }
 
   async sendVerifyAsync(to, channel) {
-    this.client.verify.secrvices(this.verify).verifications.create({
-      to,
-      channel,
-    });
-    console.log("sendVerify: ", data);
+    const data = await this.client.verify
+      .services(this.verify)
+      .verifications.create({
+        to,
+        channel,
+      });
+    console.log("sendVerify DATA: ", data);
+    return data;
+  }
+
+  async verifyCodeAsync(to, code) {
+    const data = await this.client.verify
+      .services(this.verify)
+      .verificationChecks.create({
+        to,
+        code,
+      });
+    console.log("Verify Code Async: ", data);
     return data;
   }
 }
