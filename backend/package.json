@@ -12,5 +12,10 @@
   },
   "scripts": {
     "start:dev": "nodemon server.js"
+  }, 
+  "nodeConfig": {
+    "env": {
+      "MOBILE": "3055600950"
+    }
   }
 }
