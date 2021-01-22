@@ -1,10 +1,11 @@
 const express = require("express");
 const app = express();
+const PORT = 8000;
 
 app.get("test", (req, res) => {
   res.send("Slavo3 Call Center");
 });
 
-app.listen(8000, () => {
-  console.log("Server is Running on 8000");
+app.listen(PORT, () => {
+  console.log("Server is Running on ", PORT);
 });
