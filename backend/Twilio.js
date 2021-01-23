@@ -36,7 +36,7 @@ class Twilio {
         code,
       });
     console.log("Verify Code Async: ", data);
-    return data;
+    return;
   }
 }
 
