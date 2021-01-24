@@ -15,9 +15,9 @@ app.get("/login", async (req, res) => {
 });
 
 // verify phone number
-app.get("/verify", async (res, req) => {
+app.get("/verify", async (req, res) => {
   console.log("Verify");
-  const data = await twilio.verifyCodeAsync(process.env.MOBILE, "974620");
+  const data = await twilio.verifyCodeAsync(process.env.MOBILE, req.query.code);
   return data;
 });
 app.listen(PORT, () => {
