@@ -22,7 +22,7 @@ function Login() {
               placeholder="mobile number"
             ></Form.Input>
             <Button color="red" fluid size="large">
-              Login
+              Login/Sign Up
             </Button>
           </Segment>
         </Form>
