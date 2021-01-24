@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Header, Form, Segment } from "semantic-ui-react";
+import { Grid, Header, Form, Segment, Button } from "semantic-ui-react";
 function Login() {
   return (
     <Grid textAlign="center" verticalAlign="middle" style={{ height: "100vh" }}>
@@ -21,6 +21,9 @@ function Login() {
               iconPosition="left"
               placeholder="mobile number"
             ></Form.Input>
+            <Button color="red" fluid size="large">
+              Login
+            </Button>
           </Segment>
         </Form>
       </Grid.Column>
