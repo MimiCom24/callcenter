@@ -1,10 +1,12 @@
 const express = require("express");
 const twilio = require("./Twilio");
+const cors = require("cors");
 const app = express();
 const PORT = 8000;
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.send("Slavo3 Call Center");
