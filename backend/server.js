@@ -14,7 +14,6 @@ app.get("/", (req, res) => {
 
 // receive phone number
 app.post("/login", async (req, res) => {
-  console.log("BODY: ", req.body.to);
   const { to, userName, channel } = req.body;
   const data = await twilio.sendVerifyAsync(to, channel);
   res.send(data);
@@ -24,7 +23,8 @@ app.post("/login", async (req, res) => {
 app.post("/verify", async (req, res) => {
   const { to, code } = req.body;
   const data = await twilio.verifyCodeAsync(to, code);
-  return data;
+  console.log("DATA: ", data);
+  res.send(data);
 });
 app.listen(PORT, () => {
   console.log("Server is Running on ", PORT);

@@ -24,6 +24,7 @@ function App() {
   }
 
   async function sendCode() {
+    console.log("Send Code: ");
     const response = await axios.post("/verify", {
       to: user.mobileNumber,
       code: user.verifacationCode,
