@@ -5,6 +5,7 @@ function Login({
   user: { userName, mobileNumber, verifacationCode, verifacationSent },
   setUser,
   sendSmsCode,
+  sendCode,
 }) {
   function populteFields(event, data) {
     setUser((draft) => {
@@ -12,8 +13,6 @@ function Login({
     });
   }
 
-  console.log("User: ", userName);
-  console.log("Phone number: ", mobileNumber);
   return (
     <Grid textAlign="center" verticalAlign="middle" style={{ height: "100vh" }}>
       <Grid.Column style={{ maxWidth: 450 }}>
@@ -58,8 +57,13 @@ function Login({
               ></Form.Input>
             )}
 
-            <Button color="red" fluid size="large" onClick={sendSmsCode}>
-              Login/Sign Up
+            <Button
+              color="red"
+              fluid
+              size="large"
+              onClick={!verifacationSent ? sendSmsCode : sendCode}
+            >
+              {!verifacationSent ? "Login/Sign Up" : "Enter Your Code"}
             </Button>
           </Segment>
         </Form>

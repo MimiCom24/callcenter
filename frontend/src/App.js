@@ -22,9 +22,20 @@ function App() {
       draft.verifacationSent = true;
     });
   }
+
+  async function sendCode() {
+    await axios.post("/login", {
+      code: user.verifacationCode,
+    });
+  }
   return (
     <div className="App">
-      <Login user={user} setUser={setUser} sendSmsCode={sendSms} />
+      <Login
+        user={user}
+        setUser={setUser}
+        sendSmsCode={sendSms}
+        sendCode={sendCode}
+      />
     </div>
   );
 }
