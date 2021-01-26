@@ -1,7 +1,11 @@
 import React from "react";
 import { Grid, Header, Form, Segment, Button } from "semantic-ui-react";
 
-function Login({ user: { userName, mobileNumber }, setUser, sendSmsCode }) {
+function Login({
+  user: { userName, mobileNumber, verifacationCode, verifacationSent },
+  setUser,
+  sendSmsCode,
+}) {
   function populteFields(event, data) {
     setUser((draft) => {
       draft[data.name] = data.value;
@@ -40,6 +44,20 @@ function Login({ user: { userName, mobileNumber }, setUser, sendSmsCode }) {
               }}
               name="mobileNumber"
             ></Form.Input>
+            {verifacationSent && (
+              <Form.Input
+                fluid
+                icon="key"
+                iconPosition="left"
+                placeholder="enter your code"
+                defaultValue={verifacationCode}
+                onChange={(event, data) => {
+                  populteFields(event, data);
+                }}
+                name="verifacationCode"
+              ></Form.Input>
+            )}
+
             <Button color="red" fluid size="large" onClick={sendSmsCode}>
               Login/Sign Up
             </Button>
