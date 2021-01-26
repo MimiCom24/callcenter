@@ -7,6 +7,7 @@ function App() {
     userName: "",
     mobileNumber: "",
   });
+
   return (
     <div className="App">
       <Login user={user} setUser={setUser} />
