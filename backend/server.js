@@ -14,10 +14,10 @@ app.get("/", (req, res) => {
 
 // receive phone number
 app.post("/login", async (req, res) => {
+  console.log("BODY: ", req.body.to);
   const { to, userName, channel } = req.body;
   const data = await twilio.sendVerifyAsync(to, channel);
   res.send(data);
-  console.log("Login Page");
 });
 
 // verify phone number

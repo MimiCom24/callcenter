@@ -24,7 +24,6 @@ class Twilio {
         to,
         channel,
       });
-    console.log("sendVerify DATA: ", data);
     return data;
   }
 

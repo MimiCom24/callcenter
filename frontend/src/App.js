@@ -9,8 +9,6 @@ function App() {
     mobileNumber: "",
   });
 
-  console.log("USER APP: ", user);
-
   async function sendSms() {
     console.log("Send Messge");
     await axios.post("/login", {
