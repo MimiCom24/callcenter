@@ -2,12 +2,14 @@ import React from "react";
 import { Grid, Header, Form, Segment, Button } from "semantic-ui-react";
 
 function Login({ user: { userName, mobileNumber }, setUser, sendSmsCode }) {
-  function populteFields(event) {
-    console.log(event.target.value);
+  function populteFields(event, data) {
     setUser((draft) => {
-      draft[event.name] = event.target.value;
+      draft[data.name] = data.value;
     });
   }
+
+  console.log("User: ", userName);
+  console.log("Phone number: ", mobileNumber);
   return (
     <Grid textAlign="center" verticalAlign="middle" style={{ height: "100vh" }}>
       <Grid.Column style={{ maxWidth: 450 }}>
@@ -22,10 +24,10 @@ function Login({ user: { userName, mobileNumber }, setUser, sendSmsCode }) {
               iconPosition="left"
               placeholder="username"
               defaultValue={userName}
-              onChange={(event) => {
-                populteFields(event);
+              onChange={(event, data) => {
+                populteFields(event, data);
               }}
-              name="username"
+              name="userName"
             ></Form.Input>
             <Form.Input
               fluid
@@ -33,8 +35,8 @@ function Login({ user: { userName, mobileNumber }, setUser, sendSmsCode }) {
               iconPosition="left"
               placeholder="mobile number"
               defaultValue={mobileNumber}
-              onChange={(event) => {
-                populteFields(event);
+              onChange={(event, data) => {
+                populteFields(event, data);
               }}
               name="mobileNumber"
             ></Form.Input>
