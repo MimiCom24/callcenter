@@ -3,6 +3,7 @@ import { Grid, Header, Form, Segment, Button } from "semantic-ui-react";
 
 function Login({ user: { userName, mobileNumber }, setUser }) {
   function populteFields(event) {
+    console.log(event.target.value);
     setUser((draft) => {
       draft[event.name] = event.target.value;
     });
@@ -20,16 +21,22 @@ function Login({ user: { userName, mobileNumber }, setUser }) {
               icon="user"
               iconPosition="left"
               placeholder="username"
-              value={userName}
-              onChange={(event) => populteFields(event)}
+              defaultValue={userName}
+              onChange={(event) => {
+                populteFields(event);
+              }}
+              name="username"
             ></Form.Input>
             <Form.Input
               fluid
               icon="mobile alternate"
               iconPosition="left"
               placeholder="mobile number"
-              value={mobileNumber}
-              onChange={(event) => populteFields(event)}
+              defaultValue={mobileNumber}
+              onChange={(event) => {
+                populteFields(event);
+              }}
+              name="mobileNumber"
             ></Form.Input>
             <Button color="red" fluid size="large">
               Login/Sign Up
