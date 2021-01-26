@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Header, Form, Segment, Button } from "semantic-ui-react";
 
-function Login({ user: { userName, mobileNumber }, setUser }) {
+function Login({ user: { userName, mobileNumber }, setUser, sendSmsCode }) {
   function populteFields(event) {
     console.log(event.target.value);
     setUser((draft) => {
@@ -38,7 +38,7 @@ function Login({ user: { userName, mobileNumber }, setUser }) {
               }}
               name="mobileNumber"
             ></Form.Input>
-            <Button color="red" fluid size="large">
+            <Button color="red" fluid size="large" onClick={sendSmsCode}>
               Login/Sign Up
             </Button>
           </Segment>
