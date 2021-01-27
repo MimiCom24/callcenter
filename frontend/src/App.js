@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Login from "./components/Login";
 import { useImmer } from "use-immer";
 import axios from "./utils/axios";
+import socket from "./utils/Socketio";
 
 function App() {
+  useEffect(() => {
+    socket.on("disconnect", () => {
+      console.log("Socket Connection is Disconnected");
+    });
+
+    return () => {};
+  }, []);
+
   const [user, setUser] = useImmer({
     userName: "",
     mobileNumber: "",
