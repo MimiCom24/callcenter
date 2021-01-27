@@ -3,13 +3,17 @@ const twilio = require("./Twilio");
 const http = require("http");
 const socketIo = require("socket.io");
 
-const PORT = 8000;
+const PORT = 3001;
 const bodyParser = require("body-parser");
 
 const cors = require("cors");
 const app = express();
+
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = socketIo(server, {
+  transport: ["websocket"],
+  pingTimeout: 10000,
+});
 
 app.use(bodyParser.json());
 app.use(cors());
