@@ -1,2 +1,4 @@
 import io from "socket.io-client";
-export default io.connect("http://localhost:8000");
+const socket = io.connect("http://localhost:8000");
+
+export default socket;

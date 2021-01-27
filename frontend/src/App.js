@@ -5,6 +5,13 @@ import axios from "./utils/axios";
 import socket from "./utils/Socketio";
 
 function App() {
+  const [user, setUser] = useImmer({
+    userName: "",
+    mobileNumber: "",
+    verifacationCode: "",
+    verifacationSent: false,
+  });
+
   useEffect(() => {
     socket.on("disconnect", () => {
       console.log("Socket Connection is Disconnected");
@@ -12,13 +19,6 @@ function App() {
 
     return () => {};
   }, []);
-
-  const [user, setUser] = useImmer({
-    userName: "",
-    mobileNumber: "",
-    verifacationCode: "",
-    verifacationSent: false,
-  });
 
   async function sendSms() {
     console.log("Send Messge");

@@ -1,24 +1,24 @@
 const express = require("express");
 const twilio = require("./Twilio");
 const http = require("http");
-const io = require("socket.io");
-
-const cors = require("cors");
-const app = express();
-const server = http.createServer(app);
-const socket = io(server);
+const socketIo = require("socket.io");
 
 const PORT = 8000;
 const bodyParser = require("body-parser");
 
+const cors = require("cors");
+const app = express();
+const server = http.createServer(app);
+const io = socketIo(server);
+
 app.use(bodyParser.json());
 app.use(cors());
 
-socket.on("connection", (socket) => {
+io.on("connection", (socket) => {
   console.log("a user connected", socket.id);
-});
-socket.on("disconnect", () => {
-  console.log("Socket Disconnected");
+  socket.on("disconnect", () => {
+    console.log("Socket Disconnected", socket.id);
+  });
 });
 
 app.get("/", (req, res) => {
