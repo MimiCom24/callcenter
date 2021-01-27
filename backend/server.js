@@ -44,6 +44,6 @@ app.post("/verify", async (req, res) => {
   res.send(data);
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("Server is Running on ", PORT);
 });
