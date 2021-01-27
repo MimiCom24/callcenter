@@ -5,12 +5,17 @@ const socketIo = require("socket.io");
 
 const cors = require("cors");
 const app = express();
-const server = http.server;
+const server = http.createServer(app);
+
+const socket = socketIo(server);
 const PORT = 8000;
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.json());
 app.use(cors());
+socket.on("connection", (socket) => {
+  console.log("Socket Conneted: ", socket);
+});
 
 app.get("/", (req, res) => {
   res.send("Slavo3 Call Center");
